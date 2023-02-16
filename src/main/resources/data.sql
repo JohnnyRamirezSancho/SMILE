@@ -1,4 +1,4 @@
-INSERT INTO patients (dni, name, lastname, birthdate, phone, address, city) VALUES ('1234546578l', 'Uno', 'Dos', '2013-01-01', '619619619', 'c/ No lo sé, 14', 'Gijón')
-INSERT INTO patients (dni, name, lastname, birthdate, phone, address, city) VALUES ('0999', 'One', 'Two', '2013-02-02', '555555555', 'c/ No lo sé, 14', 'Gijón')
-INSERT INTO patients (dni, name, lastname, birthdate, phone, address, city) VALUES ('8753221l', 'Une', 'Due', '2013-03-03', '999999999', 'c/ No lo sé, 14', 'Gijón')
-INSERT INTO patients (dni, name, lastname, birthdate, phone, address, city) VALUES ('3434343434l', 'Eleven', 'Twelve', '2013-04-04', '43242432', 'c/ No lo sé, 14', 'Gijón')
+INSERT INTO profiles VALUES (default, 'c/ No lo sé, 14', 'Gijón', '999999999', 'user')
+INSERT INTO profiles VALUES (default, 'c/ No lo sé, 121', 'Gijón', '1312312319', 'user2')
+
+INSERT INTO patients VALUES ("123456789a", '2020-01-01', 'david', 'daza', 1)

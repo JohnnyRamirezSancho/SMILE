@@ -15,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.smile.smile.models.Patient;
+import com.smile.smile.models.Profile;
 import com.smile.smile.repositories.PatientRepository;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,8 +30,10 @@ public class PatientServiceTest {
 
     @Test
     public void test_get_all(){
-       Patient patient1 = new Patient("3434343434l", "Eleven", "Twelve", Date.valueOf("2013-04-04"), "43242432", "c/ No lo sé, 14", "Gijón");
-       Patient patient2 = new Patient("3543343434l", "one", "Twelve", Date.valueOf("2018-04-04"), "441141132", "c/ No lo sé, 16", "Gijón"); 
+       Profile profile1 = new Profile(1L, "elevenprofile", "1234567890", "calle coca cola", "ciudad");
+       Profile profile2 = new Profile(2L, "oneprofile", "1234531230", "calle coca cola no", "ciudad2");
+       Patient patient1 = new Patient("3434343434l", "Eleven", "Twelve", Date.valueOf("2013-04-04"), profile1);
+       Patient patient2 = new Patient("3543343434l", "one", "Twelve", Date.valueOf("2018-04-04"),profile2); 
 
        List<Patient> patients = new ArrayList<>();
 
@@ -48,7 +51,8 @@ public class PatientServiceTest {
 
     @Test
     public void test_get_one_patient(){
-        Patient patient = new Patient("3434343434l", "Eleven", "Twelve", Date.valueOf("2013-04-04"), "43242432", "c/ No lo sé, 14", "Gijón");
+        Profile profile = new Profile(1L, "elevenprofile", "1234567890", "calle coca cola", "ciudad");
+        Patient patient = new Patient("3434343434l", "Eleven", "Twelve", Date.valueOf("2013-04-04"),profile);
 
         when(repository.findByDni("3434343434l")).thenReturn(patient);
 

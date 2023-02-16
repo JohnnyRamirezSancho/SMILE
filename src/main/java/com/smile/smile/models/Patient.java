@@ -1,10 +1,14 @@
 package com.smile.smile.models;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,27 +23,24 @@ public class Patient {
     private String lastname;
     @Column(nullable = false)
     private Date birthdate;
-    @Column(nullable = false)
-    private String phone;
-    @Column(nullable = false)
-    private String address;
-    @Column(nullable = false)
-    private String city;
+    @OneToOne 
+    private Profile profile;
+    @ManyToMany
+    private List<Treatment> treatments;
 
     public Patient() {
     }
 
-    public Patient(String dni, String name, String lastname, Date birthdate, String phone, String address,
-            String city) {
+    public Patient(String dni, String name, String lastname, Date birthdate, Profile profile) {
         this.dni = dni;
         this.name = name;
         this.lastname = lastname;
         this.birthdate = birthdate;
-        this.phone = phone;
-        this.address = address;
-        this.city = city;
+        this.profile = profile;
+        this.treatments = new ArrayList<>();
     }
 
+    
     public String getDni() {
         return dni;
     }
@@ -72,30 +73,20 @@ public class Patient {
         this.birthdate = birthdate;
     }
 
-    public String getPhone() {
-        return phone;
+    public Profile getProfile() {
+        return profile;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
-    public String getAddress() {
-        return address;
+    public List<Treatment> getTreatments() {
+        return treatments;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    
+    public void setTreatments(List<Treatment> treatments) {
+        this.treatments = treatments;
+    }   
     
 }

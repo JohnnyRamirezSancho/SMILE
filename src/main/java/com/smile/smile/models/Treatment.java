@@ -5,14 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "treatments")
 public class Treatment {
-    @OneToOne 
-    private Patient dni;
+    
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "id_profile")
     private Long id;
     @Column(nullable = false)
@@ -21,19 +19,11 @@ public class Treatment {
     public Treatment() {
     }
 
-    public Treatment(Patient dni, Long id, String treatment) {
-        this.dni = dni;
+    public Treatment(Long id, String treatment) {
         this.id = id;
         this.treatment = treatment;
     }
 
-    
-    public Patient getDni() {
-        return dni;
-    }
-    public void setDni(Patient dni) {
-        this.dni = dni;
-    }
     public Long getId() {
         return id;
     }
