@@ -5,35 +5,36 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "profiles")
 public class Profile {
     
-    @OneToOne 
-    private Patient dni;
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "id_profile")
     private Long id;
     @Column(nullable = false)
     private String profile;
+    @Column(nullable = false)
+    private String phone;
+    @Column(nullable = false)
+    private String address;
+    @Column(nullable = false)
+    private String city;
+    
     
     public Profile() {
     }
 
-    public Profile(Patient dni, Long id, String profile) {
-        this.dni = dni;
+    public Profile(Long id, String profile, String phone, String address, String city) {
         this.id = id;
         this.profile = profile;
+        this.phone = phone;
+        this.address = address;
+        this.city = city;
     }
 
-    public Patient getDni() {
-        return dni;
-    }
-    public void setDni(Patient dni) {
-        this.dni = dni;
-    }
     public Long getId() {
         return id;
     }
@@ -47,5 +48,29 @@ public class Profile {
         this.profile = profile;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+    
         
 }
