@@ -73,6 +73,7 @@ public class PatientService {
     }
 
     public Patient update(String dni, PatientPayload patient){
+        //creamos una funcion lambda para hacer el mapping de la parte del patient
         return repository.findByDni(dni).map(patientPayload -> {
 
             patientPayload.setName(patient.getName());
