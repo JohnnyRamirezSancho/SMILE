@@ -49,7 +49,7 @@ public class PatientController {
 
     // para hacer el update tambien ultilizamos el payload, solo la parte del patient para modificarlo
     @PutMapping("/{dni}")
-    public Patient update(@PathVariable String dni, @RequestBody PatientPayload patientToAdd) {
-        return service.update(dni, patientToAdd);
+    public Patient update(@PathVariable String dni, @RequestBody PatientPayload patientToModify) {
+        return service.update(dni, patientToModify);
     }
 }

@@ -77,12 +77,13 @@ public class PatientService {
         return repository.findByDni(dni).map(patientPayload -> {
 
             patientPayload.setName(patient.getName());
-                patientPayload.setLastname(patient.getLastname());
-                patientPayload.setBirthdate(patient.getBirthdate());
-                
+            patientPayload.setLastname(patient.getLastname());
+            patientPayload.setBirthdate(patient.getBirthdate());
+
+            Profile profileUpdate = patientPayload.getProfile();
+            profileUpdate.setProfile(patient.getProfile());
+            patientPayload.setProfile(profileUpdate);
             return repository.save(patientPayload);
         }).orElse(null);
-
-        
     }
 }

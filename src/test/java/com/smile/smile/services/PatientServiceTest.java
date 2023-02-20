@@ -54,7 +54,7 @@ public class PatientServiceTest {
         Profile profile = new Profile(1L, "elevenprofile", "1234567890", "calle coca cola", "ciudad");
         Patient patient = new Patient("3434343434l", "Eleven", "Twelve", Date.valueOf("2013-04-04"),profile);
 
-        when(repository.findByDni("3434343434l")).thenReturn(patient);
+        when(repository.findByDni("3434343434l").orElseThrow(null)).thenReturn(patient);
 
         service.getOne("3434343434l");
 

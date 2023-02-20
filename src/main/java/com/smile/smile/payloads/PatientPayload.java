@@ -17,8 +17,7 @@ public class PatientPayload {
     public PatientPayload() {
     }
 
-    public PatientPayload(String dni, String name, String lastname, Date birthdate, String profile, String phone,
-            String address, String city) {
+    public PatientPayload(String dni, String name, String lastname, Date birthdate, String profile, String phone, String address, String city) {
         this.dni = dni;
         this.name = name;
         this.lastname = lastname;
