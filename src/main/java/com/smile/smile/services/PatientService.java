@@ -36,30 +36,17 @@ public class PatientService {
         return repository.findByDni(dni).orElseThrow(null);
     }
 
-    public void save(PatientPayload patientToAdd){
-        // Aqui es donde usamos el PatientPayLoad para psar toda la info tanto del paciente como del profile
-        // nuestro metodo save del controlador va a recibit un pay load con la informacion.
-        // a continuación declaramos un nuevo profile donde vamos a poner la info correspondiente a la entidad
-        // de profile 
-        Profile patientProfile = new Profile(null
-                                , patientToAdd.getProfile()
-                                , patientToAdd.getPhone()
-                                , patientToAdd.getAddress()
-                                , patientToAdd.getCity());
-        // despues llamamos al metodo del profileRepository, save para guardar nuestro nuevo perfil y asi asignar 
-        // un numero de id que nos va a servir para crear al paciente
-        Profile addedProfile =  profileRepository.save(patientProfile);
-        // una vez tenemos el nuevo profile creamos el nuevo paciente y le asignamos el profile que creamos hace un momento
-
+    public void save(Patient patientToAdd){
         Patient newPatient = new Patient(patientToAdd
                             .getDni()
                             , patientToAdd.getName()
                             , patientToAdd.getLastname()
-                            , patientToAdd.getBirthdate()
-                            , addedProfile);
-        // una vez hecho esto simplemente llamamos al metodo save de nuestro repositorio de pacientes y añadimos a nuestro nuevo 
-        // con su perfil ya asignado.
+                            , patientToAdd.getBirthdate());      
         repository.save(newPatient);
+    }
+
+    public void saveProfile(Profile profileToAdd, String dni){
+        //añadir un perfil a un paciente... pendiente
     }
 
     public List<Patient> delete(String dni){

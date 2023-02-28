@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smile.smile.models.Patient;
+import com.smile.smile.models.Profile;
 import com.smile.smile.services.PatientService;
 import com.smile.smile.payloads.PatientPayload;
 
@@ -38,8 +39,13 @@ public class PatientController {
     // en este metodo del controlador usamos un requestBody de tipo patientPeyLoad para guardar 
     // toda la info que necesitamos para crear a nuestro paciente y su respectivo perfil
     @PostMapping("")
-    public void store(@RequestBody PatientPayload patientToAdd){
+    public void store(@RequestBody Patient patientToAdd){
         service.save(patientToAdd);
+    }
+
+    @PostMapping("/{dni}/profiles")
+    public void storeProfile(@RequestBody Profile profileToad, @PathVariable String dni){
+        
     }
 
     @DeleteMapping("/{dni}")

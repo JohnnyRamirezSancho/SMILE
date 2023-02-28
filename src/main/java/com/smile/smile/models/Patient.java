@@ -31,12 +31,12 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(String dni, String name, String lastname, Date birthdate, Profile profile) {
+    public Patient(String dni, String name, String lastname, Date birthdate) {
         this.dni = dni;
         this.name = name;
         this.lastname = lastname;
         this.birthdate = birthdate;
-        this.profile = profile;
+        this.profile = new Profile();
         this.treatments = new ArrayList<>();
     }
 
