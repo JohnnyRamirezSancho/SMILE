@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.smile.smile.models.Patient;
 import com.smile.smile.models.Profile;
 import com.smile.smile.services.PatientService;
-import com.smile.smile.payloads.PatientPayload;
+
 
 
 @RestController
@@ -36,16 +36,15 @@ public class PatientController {
     public Patient listOne(@PathVariable String dni){
         return service.getOne(dni); 
     }
-    // en este metodo del controlador usamos un requestBody de tipo patientPeyLoad para guardar 
-    // toda la info que necesitamos para crear a nuestro paciente y su respectivo perfil
+
     @PostMapping("")
     public void store(@RequestBody Patient patientToAdd){
         service.save(patientToAdd);
     }
 
     @PostMapping("/{dni}/profiles")
-    public void storeProfile(@RequestBody Profile profileToad, @PathVariable String dni){
-        
+    public void storeProfile(@RequestBody Profile profileToAdd, @PathVariable String dni){
+        service.saveProfile(profileToAdd, dni);
     }
 
     @DeleteMapping("/{dni}")
@@ -53,9 +52,13 @@ public class PatientController {
         return service.delete(dni);
     }
 
-    // para hacer el update tambien ultilizamos el payload, solo la parte del patient para modificarlo
     @PutMapping("/{dni}")
-    public Patient update(@PathVariable String dni, @RequestBody PatientPayload patientToModify) {
-        return service.update(dni, patientToModify);
+    public Patient update(@PathVariable String dni, @RequestBody Patient patientToUpdate) {
+        return service.update(dni, patientToUpdate);
+    }
+
+    @PutMapping("/{dni}/profiles")
+    public Profile updateProfile(@PathVariable String dni, @RequestBody Profile profileToUpdate) {
+        return service.updateProfile(dni, profileToUpdate);
     }
 }

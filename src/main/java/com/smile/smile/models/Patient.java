@@ -36,7 +36,6 @@ public class Patient {
         this.name = name;
         this.lastname = lastname;
         this.birthdate = birthdate;
-        this.profile = new Profile();
         this.treatments = new ArrayList<>();
     }
 

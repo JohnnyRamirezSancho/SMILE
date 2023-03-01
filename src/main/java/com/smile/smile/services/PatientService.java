@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.smile.smile.models.Patient;
 import com.smile.smile.models.Profile;
-import com.smile.smile.payloads.PatientPayload;
 import com.smile.smile.repositories.PatientRepository;
 import com.smile.smile.repositories.ProfileRepository;
 
@@ -16,11 +15,9 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public class PatientService {
-    // Johnny estoy un poco mal y no puedo hablar mucho pero te explico lo de los payloads que nos quedó pendiente
-    // En este servicio voy a instanciar el repositorio de perfil, aparte del repo de patient
-    // Tenemos que preguntar si esto está bien o si es buena practica
+
     private PatientRepository repository;
-    // etiqueta autowired para no hacer otro contructor por parametros para el profileRepository
+
     @Autowired
     private ProfileRepository profileRepository;
 
@@ -46,31 +43,50 @@ public class PatientService {
     }
 
     public void saveProfile(Profile profileToAdd, String dni){
-        //añadir un perfil a un paciente... pendiente
+        Patient patientAddProfile = repository.findByDni(dni).orElseThrow();
+
+        profileRepository.save(profileToAdd);
+        patientAddProfile.setProfile(profileToAdd);
+
+        repository.save(patientAddProfile);
     }
 
     public List<Patient> delete(String dni){
-        //aqui busco el paciente que voy a eliminar, primero me aseguro, debberíamos controlar que exista el 
-        // perfil y el paciente para poder eliminarlo, sino nos salta un 500, en caso de que el paciente
-        // a eliminar no tenga un profile anexo.
+
         Patient patientToDelete = repository.findByDni(dni).orElse(null);
         repository.delete(patientToDelete);
         profileRepository.delete(patientToDelete.getProfile());
         return repository.findAll();
     }
 
-    public Patient update(String dni, PatientPayload patient){
-        //creamos una funcion lambda para hacer el mapping de la parte del patient
+    public Patient update(String dni, Patient patientToUpdate){
+
         return repository.findByDni(dni).map(patientPayload -> {
 
-            patientPayload.setName(patient.getName());
-            patientPayload.setLastname(patient.getLastname());
-            patientPayload.setBirthdate(patient.getBirthdate());
+            patientPayload.setName(patientToUpdate.getName());
+            patientPayload.setLastname(patientToUpdate.getLastname());
+            patientPayload.setBirthdate(patientToUpdate.getBirthdate());
 
-            Profile profileUpdate = patientPayload.getProfile();
-            profileUpdate.setProfile(patient.getProfile());
-            patientPayload.setProfile(profileUpdate);
             return repository.save(patientPayload);
         }).orElse(null);
+    }
+
+    public Profile updateProfile(String dni, Profile profileToUpdate){
+
+            
+            Patient patientProfileToUpdate = repository.findByDni(dni).orElseThrow(null);
+
+            Profile profileUpdated = patientProfileToUpdate.getProfile();
+
+            profileUpdated.setProfile(profileToUpdate.getProfile());
+            profileUpdated.setPhone(profileToUpdate.getPhone());
+            profileUpdated.setAddress(profileToUpdate.getAddress());
+            profileUpdated.setCity(profileToUpdate.getCity());
+            
+
+            return repository.save(patientProfileToUpdate).getProfile();
+
+        
+
     }
 }
