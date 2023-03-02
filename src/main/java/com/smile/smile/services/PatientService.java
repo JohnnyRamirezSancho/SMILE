@@ -55,7 +55,7 @@ public class PatientService {
 
         Patient patientToDelete = repository.findByDni(dni).orElse(null);
         repository.delete(patientToDelete);
-        profileRepository.delete(patientToDelete.getProfile());
+        // profileRepository.delete(patientToDelete.getProfile());
         return repository.findAll();
     }
 
@@ -72,8 +72,7 @@ public class PatientService {
     }
 
     public Profile updateProfile(String dni, Profile profileToUpdate){
-
-            
+           
             Patient patientProfileToUpdate = repository.findByDni(dni).orElseThrow(null);
 
             Profile profileUpdated = patientProfileToUpdate.getProfile();
@@ -83,10 +82,14 @@ public class PatientService {
             profileUpdated.setAddress(profileToUpdate.getAddress());
             profileUpdated.setCity(profileToUpdate.getCity());
             
-
             return repository.save(patientProfileToUpdate).getProfile();
+    }
 
-        
-
+    public Patient deleteProfile(String dni){
+        Patient patientToProfileDelete = repository.findByDni(dni).orElse(null);
+        Profile profileToDelete = patientToProfileDelete.getProfile();
+        patientToProfileDelete.setProfile(null);
+        profileRepository.delete(profileToDelete);
+        return repository.findByDni(dni).orElse(null);
     }
 }
