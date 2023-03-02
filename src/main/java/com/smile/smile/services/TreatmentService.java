@@ -18,4 +18,13 @@ public class TreatmentService {
     public List<Treatment> getAll() {
         return repository.findAll();
     }
+
+    public Treatment save(Treatment treatmentToAdd){
+        return repository.save(treatmentToAdd);
+    }
+
+    public List<Treatment> delete(Long id){
+        repository.deleteById(id);
+        return repository.findAll();
+    }
 }

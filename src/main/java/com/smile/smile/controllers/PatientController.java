@@ -2,7 +2,6 @@ package com.smile.smile.controllers;
 
 import java.util.List;
 
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.smile.smile.models.Patient;
 import com.smile.smile.models.Profile;
 import com.smile.smile.services.PatientService;
-
-
 
 @RestController
 @RequestMapping(path = "/api/patients")
@@ -60,5 +57,10 @@ public class PatientController {
     @PutMapping("/{dni}/profiles")
     public Profile updateProfile(@PathVariable String dni, @RequestBody Profile profileToUpdate) {
         return service.updateProfile(dni, profileToUpdate);
+    }
+
+    @DeleteMapping("/{dni}/profiles")
+    public Patient deleteProfile(@PathVariable String dni) {
+        return service.deleteProfile(dni);
     }
 }
