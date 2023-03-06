@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.smile.smile.models.Patient;
 import com.smile.smile.models.Profile;
+import com.smile.smile.models.Treatment;
 import com.smile.smile.services.PatientService;
 
 @RestController
@@ -42,6 +43,11 @@ public class PatientController {
     @PostMapping("/{dni}/profiles")
     public void storeProfile(@RequestBody Profile profileToAdd, @PathVariable String dni){
         service.saveProfile(profileToAdd, dni);
+    }
+
+    @PostMapping("/{dni}/treatments")
+    public void storeTreatment(@RequestBody Treatment treatmentToAdd, @PathVariable String dni){
+        service.saveTreatment(treatmentToAdd,dni);
     }
 
     @DeleteMapping("/{dni}")

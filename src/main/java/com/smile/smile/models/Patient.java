@@ -7,7 +7,10 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -26,7 +29,13 @@ public class Patient {
     private Date birthdate;
     @OneToOne 
     private Profile profile;
-    @ManyToMany
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "patients_treatments",
+        joinColumns = @JoinColumn(name = "patient_dni"),
+        inverseJoinColumns = @JoinColumn(name = "treatment_id")
+    )
     private List<Treatment> treatments;
 
     public Patient() {
@@ -89,4 +98,7 @@ public class Patient {
         this.treatments = treatments;
     }   
     
+    public void AddTreatments(Treatment treatment){
+        this.treatments.add(treatment);
+    }
 }

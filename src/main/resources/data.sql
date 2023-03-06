@@ -9,8 +9,8 @@ INSERT INTO treatments (id_treatment, treatment) VALUES (default, 'Tratamiento 3
 INSERT INTO treatments (id_treatment, treatment) VALUES (default, 'Tratamiento 4')
 INSERT INTO treatments (id_treatment, treatment) VALUES (default, 'Tratamiento 5')
 
-INSERT INTO patients_treatments (treatments_id_treatment, patient_dni) VALUES (1, '1234546578l')
-INSERT INTO patients_treatments (treatments_id_treatment, patient_dni) VALUES (3, '1234546578l')
-INSERT INTO patients_treatments (treatments_id_treatment, patient_dni) VALUES (4, '1234546578l')
-INSERT INTO patients_treatments (treatments_id_treatment, patient_dni) VALUES (2, '0999')
-INSERT INTO patients_treatments (treatments_id_treatment, patient_dni) VALUES (5, '0999')
+/* INSERT INTO patients_treatments (treatment_id, patient_dni) VALUES (1, '1234546578l')
+INSERT INTO patients_treatments (treatment_id, patient_dni) VALUES (3, '1234546578l')
+INSERT INTO patients_treatments (treatment_id, patient_dni) VALUES (4, '1234546578l')
+INSERT INTO patients_treatments (treatment_id, patient_dni) VALUES (2, '0999') 
+INSERT INTO patients_treatments (treatment_id, patient_dni) VALUES (5, '0999')*/
