@@ -10,7 +10,7 @@ import com.smile.smile.repositories.PatientRepository;
 import com.smile.smile.repositories.ProfileRepository;
 import com.smile.smile.repositories.TreatmentRepository;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -61,18 +61,10 @@ public class PatientService {
         Patient patientAddTreatment = repository.findByDni(dni).orElseThrow();
         Treatment treatmentAddPatient= treatmentRepository.findById(treatmentToAdd.getId()).orElseThrow();
 
-        
-
-        /* List<Patient> patients = new ArrayList<>();
-        patients.add(patientAddTreatment); */
-        
-
-        /* List<Treatment> treatments = new ArrayList<>();
-        treatments.add(treatmentToAdd); */
 
         patientAddTreatment.AddTreatments(treatmentAddPatient);
 
-        /* treatmentRepository.save(treatmentToAdd); */
+
         repository.save(patientAddTreatment);
     }
 

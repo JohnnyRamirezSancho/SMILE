@@ -1,13 +1,16 @@
 package com.smile.smile.services;
 
+
 import org.springframework.stereotype.Service;
 
-import com.smile.smile.models.Patient;
+
 import com.smile.smile.models.Treatment;
 import com.smile.smile.repositories.TreatmentRepository;
 
-import java.util.ArrayList;
+
 import java.util.List;
+
+
 
 @Service
 public class TreatmentService {
@@ -27,10 +30,11 @@ public class TreatmentService {
 
     public List<Treatment> delete(Long id){
         Treatment treatmentToDelete = repository.findById(id).orElseThrow(null);
-        List<Patient> patients = new ArrayList<>();
-        treatmentToDelete.setPatients(patients);
+        /* List<Patient> patients = new ArrayList<>();
+        treatmentToDelete.setPatients(patients); */
 
-        repository.deleteById(treatmentToDelete.getId());
+        
+        repository.deleteById(id);
         return repository.findAll();
     }
 }
