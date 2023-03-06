@@ -29,7 +29,7 @@ public class TreatmentService {
     }
 
     public List<Treatment> delete(Long id){
-        Treatment treatmentToDelete = repository.findById(id).orElseThrow(null);
+        /* Treatment treatmentToDelete = repository.findById(id).orElseThrow(null); */
         /* List<Patient> patients = new ArrayList<>();
         treatmentToDelete.setPatients(patients); */
 

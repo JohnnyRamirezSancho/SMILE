@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -52,12 +52,12 @@ public class PatientServiceTest {
     @Test
     public void test_get_one_patient(){
         Profile profile = new Profile(1L, "elevenprofile", "1234567890", "calle coca cola", "ciudad");
-        Patient patient = new Patient("3434343434l", "Eleven", "Twelve", Date.valueOf("2013-04-04"));
+        Patient patient = new Patient("123", "Eleven", "Twelve", Date.valueOf("2013-04-04"));
 
-        when(repository.findByDni("3434343434l").orElseThrow(null)).thenReturn(patient);
+        when(repository.findByDni("123")).thenReturn(Optional.of(patient));
 
-        service.getOne("3434343434l");
+        service.getOne("123");
 
-        assertThat(patient.getDni()).isEqualTo("3434343434l");
+        assertThat(patient.getDni()).isEqualTo("123");
     }
 }
